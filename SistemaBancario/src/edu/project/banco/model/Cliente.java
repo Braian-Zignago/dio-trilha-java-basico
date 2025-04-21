@@ -5,7 +5,7 @@ import java.util.HashSet;
 public class Cliente {
     private String nombre;
     private final String ID;
-    HashSet<Cuenta> cuentas;
+    HashSet<Cuenta> cuentas = new HashSet<>();
 
     public Cliente(String nombre, String ID) {
         this.nombre = nombre;
@@ -13,7 +13,7 @@ public class Cliente {
     }
 
     public void agregarCuenta(Cuenta cuenta){
-
+        this.cuentas.add(cuenta);
     }
 
     public String getNombre() {

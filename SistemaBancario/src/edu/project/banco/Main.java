@@ -1,17 +1,68 @@
 package edu.project.banco;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import edu.project.banco.model.Banco;
+import edu.project.banco.model.Cliente;
+import edu.project.banco.model.Cuenta;
+import edu.project.banco.service.GestorCuenta;
+
+import java.util.HashSet;
+import java.util.Locale;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        int op = 1;
+        Scanner input = new Scanner(System.in).useLocale(Locale.US);
+        Banco bank = new Banco("TUYU");
+        Cliente cliente01 = new Cliente("Braian", "1234561221-0");
+        Cliente cliente02 = new Cliente("Vitoria", "65325222");
+        GestorCuenta gestorCuenta = new GestorCuenta();
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        gestorCuenta.crearCuenta(bank, cliente01);
+        gestorCuenta.crearCuenta(bank, cliente01);
+        gestorCuenta.crearCuenta(bank, cliente02);
+
+        while (true) {
+            String nCuenta;
+            Cuenta cuenta;
+
+            System.out.println("---Sistema Bancario---");
+            System.out.print("1: Depositar.\n2. Sacar.\nInput: ");
+            op = input.nextInt();
+            input.nextLine();
+            switch (op) {
+                case 1:
+                    System.out.println("Ingrese numero de cuenta: ");
+                    nCuenta = input.next();
+                    cuenta = bank.buscarCuenta(nCuenta);
+                    if (cuenta.getPROPIETARIO().getNombre() == "AAA") {
+                        System.out.println("Esta cuenta no existe.");
+                        break;
+                    }
+                    gestorCuenta.depositar(cuenta);
+                    System.out.println("Nuevo saldo: " + cuenta.getSaldo());
+                    break;
+                case 2:
+                    System.out.println("Ingrese numero de cuenta: ");
+                    nCuenta = input.next();
+                    cuenta = bank.buscarCuenta(nCuenta);
+                    if (cuenta.getPROPIETARIO().getNombre() == "AAA") {
+                        System.out.println("Esta cuenta no existe.");
+                        break;
+                    }
+                    gestorCuenta.sacar(cuenta);
+                    System.out.println("Nuevo saldo: " + cuenta.getSaldo());
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+            }
+            if (op == 4) {
+                System.out.println("Saliendo...");
+                break;
+            }
         }
+
     }
 }

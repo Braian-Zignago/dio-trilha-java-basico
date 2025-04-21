@@ -14,12 +14,18 @@ public class Cuenta {
     }
 
     public void depositar(double monto){
+        this.saldo = monto;
 
     }
 
     public boolean retirar(double monto){
-
-        return true;
+        boolean yes = true;
+        if (this.saldo >= monto){
+            this.saldo -= monto;
+        } else{
+            yes = false;
+        }
+        return yes;
     }
 
     public String getNUMERO_CUENTA() {
@@ -28,5 +34,9 @@ public class Cuenta {
 
     public double getSaldo() {
         return saldo;
+    }
+
+    public Cliente getPROPIETARIO() {
+        return PROPIETARIO;
     }
 }
