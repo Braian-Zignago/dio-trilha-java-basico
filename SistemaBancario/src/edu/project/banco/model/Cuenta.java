@@ -8,24 +8,28 @@ public class Cuenta {
     private final Cliente PROPIETARIO;
     private final String TIPO_CUENTA = "Cuenta Corriente";
 
-    public Cuenta(Cliente titular, String numeroCuenta){
+    public Cuenta(Cliente titular, String numeroCuenta) {
         this.NUMERO_CUENTA = numeroCuenta;
         this.PROPIETARIO = titular;
     }
 
-    public void depositar(double monto){
+    public void depositar(double monto) {
         this.saldo = monto;
 
     }
 
-    public boolean retirar(double monto){
+    public boolean retirar(double monto) {
         boolean yes = true;
-        if (this.saldo >= monto){
+        if (this.saldo >= monto) {
             this.saldo -= monto;
-        } else{
+        } else {
             yes = false;
         }
         return yes;
+    }
+
+    public String toString() {
+            return this.NUMERO_CUENTA;
     }
 
     public String getNUMERO_CUENTA() {

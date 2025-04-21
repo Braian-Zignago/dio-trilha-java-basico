@@ -4,8 +4,8 @@ import java.util.HashSet;
 
 public class Banco {
     private String nombre;
-    HashSet<Cuenta> cuentas = new HashSet<>();
-    Cliente pedro = new Cliente("Pedro", "9012121-9");
+    private HashSet<Cuenta> cuentas = new HashSet<>();
+    private HashSet<Cliente> clientes = new HashSet<>();
 
 
     public Banco(String nombre) {
@@ -15,6 +15,19 @@ public class Banco {
     public void agregarCuenta(Cuenta cuenta){
         this.cuentas.add(cuenta);
     }
+
+    public Cliente buscarCliene(String id){
+        Cliente cliente = null;
+        for (Cliente c : this.clientes) {
+            if (c.getID().contains(id)){
+                cliente = c;
+                return cliente;
+            }
+        }
+
+        return cliente;
+    }
+
     public Cuenta buscarCuenta(String numeroCuenta){
         Cliente AAA = new Cliente("AAA", "AAA");
         Cuenta cuenta;
@@ -36,5 +49,9 @@ public class Banco {
 
     public String getNombre() {
         return nombre;
+    }
+
+    public void addClientes(Cliente cliente) {
+        this.clientes.add(cliente);
     }
 }
