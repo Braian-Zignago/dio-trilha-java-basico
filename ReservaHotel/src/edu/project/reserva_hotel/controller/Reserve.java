@@ -16,16 +16,19 @@ public class Reserve {
         SimpleRoom simpleRoom = new SimpleRoom();
         Scanner input = new Scanner(System.in).useLocale(Locale.US);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String dates;
+        String[] dates = new String[2];
         LocalDate inDate;
         LocalDate outDate;
 
         reserveService.bookRoom(luxuryRoom, "Braian", LocalDate.now(), LocalDate.now().plusDays(3));
-        dates = input.next();
-        String[] date = dates.split(",");
-        inDate = LocalDate.parse(date[0], formatter);
-        outDate = LocalDate.parse(date[1], formatter);
-        if (inDate.isBefore(outDate)){
+        System.out.println("Input start date: ");
+        dates[0] = input.next();
+        System.out.println("Input finish date: ");
+        dates[1] = input.next();
+        inDate = LocalDate.parse(dates[0], formatter);
+        outDate = LocalDate.parse(dates[1], formatter);
+        System.out.println(inDate + "  " + outDate);
+        if (inDate.isBefore(outDate)) {
             reserveService.bookRoom(simpleRoom, "Vitoria", inDate, outDate);
         }
         reserveService.listReserves();
